@@ -1,6 +1,6 @@
 namespace Emik.Ktane.Gerrymandering
 
-[<Struct; StructuredFormatDisplay("{asString}")>]
+[<Struct; StructuredFormatDisplay("{AsString}")>]
 type Hue =
     | White
     | Blue
