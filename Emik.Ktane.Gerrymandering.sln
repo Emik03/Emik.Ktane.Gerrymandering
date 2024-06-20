@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Emik.Ktane.Gerrymandering", "Emik.Ktane.Gerrymandering.fsproj", "{7D6AC29D-B4EB-402B-A04A-66029CD9DE01}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Emik.Ktane.Gerrymandering.Playground", "Emik.Ktane.Gerrymandering.Playground\Emik.Ktane.Gerrymandering.Playground.fsproj", "{C1C446D9-719D-4013-83ED-61049BA0CF20}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7D6AC29D-B4EB-402B-A04A-66029CD9DE01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D6AC29D-B4EB-402B-A04A-66029CD9DE01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D6AC29D-B4EB-402B-A04A-66029CD9DE01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D6AC29D-B4EB-402B-A04A-66029CD9DE01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1C446D9-719D-4013-83ED-61049BA0CF20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1C446D9-719D-4013-83ED-61049BA0CF20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1C446D9-719D-4013-83ED-61049BA0CF20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1C446D9-719D-4013-83ED-61049BA0CF20}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
