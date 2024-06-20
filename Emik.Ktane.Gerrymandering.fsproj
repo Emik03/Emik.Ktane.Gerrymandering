@@ -6,11 +6,5 @@
         <Compile Include="Source\Hue.fs"/>
         <Compile Include="Source\Cell.fs"/>
         <Compile Include="Source\Puzzle.fs"/>
-        <Reference Include="wawa.IO" HintPath="Managed/wawa.IO.dll" Private="false"/>
-        <Reference Include="wawa.DDL" HintPath="Managed/wawa.DDL.dll" Private="false"/>
-        <Reference Include="wawa.Unity" HintPath="Managed/wawa.Unity.dll" Private="false"/>
-        <Reference Include="wawa.Modules" HintPath="Managed/wawa.Modules.dll" Private="false"/>
-        <Reference Include="wawa.Optionals" HintPath="Managed/wawa.Optionals.dll" Private="false"/>
-        <Reference Include="wawa.TwitchPlays" HintPath="Managed/wawa.TwitchPlays.dll" Private="false"/>
     </ItemGroup>
 </Project>
