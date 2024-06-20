@@ -7,7 +7,7 @@
         <DisableDefaultDocumentation>true</DisableDefaultDocumentation>
     </PropertyGroup>
     <ItemGroup>
-        <Compile Include="Program.fs"/>
+        <Compile Include="Source/Program.fs"/>
         <ProjectReference Include="../Emik.Ktane.Gerrymandering.fsproj"/>
     </ItemGroup>
 </Project>

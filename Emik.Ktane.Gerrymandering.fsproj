@@ -4,8 +4,8 @@
         <DisableDefaultDocumentation>true</DisableDefaultDocumentation>
     </PropertyGroup>
     <ItemGroup>
-        <Compile Include="Source\Hue.fs"/>
-        <Compile Include="Source\Cell.fs"/>
-        <Compile Include="Source\Puzzle.fs"/>
+        <Compile Include="Source/Hue.fs"/>
+        <Compile Include="Source/Cell.fs"/>
+        <Compile Include="Source/Puzzle.fs"/>
     </ItemGroup>
 </Project>
