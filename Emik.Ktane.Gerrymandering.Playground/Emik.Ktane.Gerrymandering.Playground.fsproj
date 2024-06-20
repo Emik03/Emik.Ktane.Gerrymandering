@@ -3,9 +3,10 @@
         <OutputType>Exe</OutputType>
         <TargetFramework>net80</TargetFramework>
         <RootNamespace>Emik.Gerrymandering.Playground</RootNamespace>
+        <DisableDefaultDocumentation>true</DisableDefaultDocumentation>
     </PropertyGroup>
     <ItemGroup>
-        <Compile Include="Program.fs"/>
         <ProjectReference Include="../Emik.Ktane.Gerrymandering.fsproj"/>
+        <Compile Include="Program.fs"/>
     </ItemGroup>
 </Project>

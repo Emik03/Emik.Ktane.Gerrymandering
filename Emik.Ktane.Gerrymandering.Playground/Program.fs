@@ -6,7 +6,7 @@ open Emik.Morsels.FunctionWrappers
 
 let go _ =
     let rng = curry (Random ()).Next
-    let matrix = Array2D.init 6 8 (fun _ _ -> White)
+    let matrix = Array2D.create 6 8 White
     let ans = List<_> ()
     let puzzle = { Puzzle.Answer = ans; Matrix = matrix; Winner = Blue }
 
