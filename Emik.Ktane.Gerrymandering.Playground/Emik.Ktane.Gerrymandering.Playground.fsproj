@@ -1,12 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <OutputType>Exe</OutputType>
+        <NoWarn>$(NoWarn);NU1702</NoWarn>
         <TargetFramework>net80</TargetFramework>
         <RootNamespace>Emik.Gerrymandering.Playground</RootNamespace>
         <DisableDefaultDocumentation>true</DisableDefaultDocumentation>
     </PropertyGroup>
     <ItemGroup>
-        <ProjectReference Include="../Emik.Ktane.Gerrymandering.fsproj"/>
         <Compile Include="Program.fs"/>
+        <ProjectReference Include="../Emik.Ktane.Gerrymandering.fsproj"/>
     </ItemGroup>
 </Project>
