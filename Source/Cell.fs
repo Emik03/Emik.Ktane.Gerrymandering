@@ -26,5 +26,4 @@ type Cell =
             yield! matrix |> toJagged |> Seq.collect showRow
             yield String.replicate (matrix.GetLength 1) "+---"
             yield "+"
-        }
-        |> String.concat ""
+        } |> String.concat ""
