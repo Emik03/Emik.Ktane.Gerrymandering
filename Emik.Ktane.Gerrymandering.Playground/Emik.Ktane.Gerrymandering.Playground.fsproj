@@ -1,5 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
+        <NoTests>true</NoTests>
         <OutputType>Exe</OutputType>
         <NoWarn>$(NoWarn);NU1702</NoWarn>
         <TargetFramework>net80</TargetFramework>

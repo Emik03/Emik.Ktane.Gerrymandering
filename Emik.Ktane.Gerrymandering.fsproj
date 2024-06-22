@@ -1,5 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
+        <NoTests>true</NoTests>
         <TargetFramework>net35</TargetFramework>
         <DisableDefaultDocumentation>true</DisableDefaultDocumentation>
     </PropertyGroup>

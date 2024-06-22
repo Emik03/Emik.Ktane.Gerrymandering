@@ -57,7 +57,6 @@ type Puzzle =
 
         let mutable limit = blocs
         let mutable appended = List<_> ()
-        let boolRng = toBoolRng rng
 
         let winners =
             [ for _ in 0 .. limit / 2 -> this.Winner ] @
@@ -80,13 +79,11 @@ type Puzzle =
 
             appended.Clear ()
 
-            // BUG: This is wrong because the above list is shuffled. Fix this later.
-            let odds i = i >= appended.Count / 2 && (boolRng () || boolRng ())
-            let push i (y, x) = matrix[y, x] <- winners[limit - 1].OppositeIf <| odds i
+            let push (y, x) = matrix[y, x] <- winners[limit - 1]
 
             match recursive y x appended with
             | None -> hasTime <- false
             | Some(false) -> ()
             | Some(true) -> appended |> List.ofSeq |> answer.Add
-                            appended |> shuffle rng |> Seq.iteri push
+                            appended |> shuffle rng |> Seq.iter push
                             limit <- limit - 1
