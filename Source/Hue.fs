@@ -6,20 +6,20 @@ type Hue =
     | Blue
     | Orange
 
-    member this.AsString = this.ToString ()
+    member inline this.AsString = this.ToString ()
 
-    member this.Opposite =
+    member inline this.Opposite =
         match this with
         | White -> White
         | Blue -> Orange
         | Orange -> Blue
 
-    member this.OppositeIf b = if b then this.Opposite else this
+    static member inline FromBool b = if b then Blue else Orange
+
+    member inline this.OppositeIf b = if b then this.Opposite else this
 
     override this.ToString () =
         match this with
         | White -> " "
         | Blue -> "X"
         | Orange -> "O"
-
-    static member FromBool b = if b then Blue else Orange

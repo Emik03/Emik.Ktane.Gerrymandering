@@ -1,17 +1,17 @@
 namespace Emik.Ktane.Gerrymandering
 
-open Emik.Morsels.Sequencer
+open Emik.Morsels.FSharp
 
 type Cell =
     { Hue : Hue
       mutable HasLeftBorder : bool
       mutable HasTopBorder : bool }
 
-    member this.LeftBorder = if this.HasLeftBorder then "|" else " "
+    member inline this.LeftBorder = if this.HasLeftBorder then "|" else " "
 
-    member this.TopBorder = if this.HasTopBorder then "+---" else "+   "
+    member inline this.TopBorder = if this.HasTopBorder then "+---" else "+   "
 
-    static member FromHue hue = { Hue = hue; HasLeftBorder = true; HasTopBorder = true }
+    static member inline FromHue hue = { Hue = hue; HasLeftBorder = true; HasTopBorder = true }
 
     static member ShowMatrix (matrix : Cell[,]) =
         let showRow row =

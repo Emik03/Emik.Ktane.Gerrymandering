@@ -2,11 +2,7 @@ namespace Emik.Ktane.Gerrymandering
 
 open System
 open System.Collections.Generic
-open Emik.Morsels.BooleanExtensions
-open Emik.Morsels.Courier
-open Emik.Morsels.Sequencer
-open Emik.Morsels.Randomizer
-open Emik.Morsels.OptionExtensions
+open Emik.Morsels.FSharp
 open Microsoft.FSharp.Collections
 
 [<NoComparison>]
@@ -29,25 +25,26 @@ type Puzzle =
         answer |> Seq.iter (fun x -> windows x |> List.iter demolishBorder)
         cells
 
-    member this.Run rng blocLength blocs timeout =
+    member this.Run rng (blocLength : int) blocs timeout =
         let start = DateTime.Now
         let { Answer = answer; Matrix = matrix } = this
+        let mutable appended = List<_> blocLength
 
-        let rec recursive absY absX (appended : ICollection<_>) =
+        let rec recursive absY absX =
             if (DateTime.Now - start) > timeout then None else
 
             let isValid (y, x) =
-                appended.Count <> blocLength
-                && tryGet y x matrix = Some White
-                && not (appended.Contains ((y, x)))
+                appended.Count <> blocLength &&
+                tryGet y x matrix = Some White &&
+                (y, x) |> appended.Contains |> not
 
             let step (y, x) =
-                appended.Add ((y, x))
+                (y, x) |> appended.Add
 
-                match recursive y x appended with
+                match recursive y x with
                 | None -> false
-                | Some(false) -> true
-                | Some(true) -> appended.Remove ((y, x)) |> tru
+                | Some(false) -> (y, x) |> appended.Remove |> tru
+                | Some(true) -> true
 
             ([ 1, 0; -1, 0; 0, 1; 0, -1 ]
             |> shuffle rng
@@ -55,16 +52,18 @@ type Puzzle =
             |> Seq.where isValid
             |> Seq.forall step).some(appended.Count = blocLength)
 
-        let mutable limit = blocs
-        let mutable appended = List<_> ()
-
         let winners =
             [ for _ in 0 .. blocs / 2 -> this.Winner ] @
             [ for _ in (blocs + 3) / 2 .. blocs -> this.Winner.Opposite ]
             |> shuffle rng
             |> List.ofSeq
 
+        let mutable limit = blocs
         let mutable hasTime = true
+        let boolRng = toBoolRng rng
+
+        let push i (y, x) = matrix[y, x] <- winners[limit - 1].OppositeIf <|
+                            (i < (blocs + 2) / 2 && boolRng () || boolRng ())
 
         while hasTime && limit <> 0 do
             let placedHues =
@@ -79,13 +78,11 @@ type Puzzle =
 
             appended.Clear ()
 
-            let push (y, x) = matrix[y, x] <- winners[limit - 1]
-
-            match recursive y x appended with
+            match recursive y x with
             | None -> hasTime <- false
             | Some false -> ()
-            | Some true -> appended |> List.ofSeq |> answer.Add
-                           appended |> shuffle rng |> Seq.iter push
+            | Some true -> List.ofSeq appended |> answer.Add
+                           appended |> Seq.iteri push
                            limit <- limit - 1
 
         hasTime
