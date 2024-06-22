@@ -1,20 +1,20 @@
 ﻿open System.Collections.Generic
 open Emik.Ktane.Gerrymandering
 open System
-open Emik.Morsels.Courier
-open Emik.Morsels.FunctionWrappers
+open Emik.Morsels.FSharp
 
 let go _ =
     let rng = curry (Random ()).Next
     let matrix = Array2D.create 6 8 White
     let ans = List<_> ()
     let puzzle = { Puzzle.Answer = ans; Matrix = matrix; Winner = Blue }
+    let timeout = TimeSpan.FromMilliseconds 50
 
-    puzzle.Run rng 3 12
-
-    Cell.ShowMatrix puzzle.Cells |> printfn "%A"
+    if puzzle.Run rng 3 12 timeout then Cell.ShowMatrix puzzle.Cells |> printfn "%A"
+    else printfn "Timeout exceeded."
 
 [<EntryPoint>]
 let main _ =
-    time (fun () -> [ for _ in 1..10 -> go () ]) |> printfn "%A"
+    let inline fn _ = [ for _ in 1 .. 1000 -> go () ]
+    time fn |> printfn "%A"
     0

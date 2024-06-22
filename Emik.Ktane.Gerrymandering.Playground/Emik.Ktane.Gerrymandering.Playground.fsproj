@@ -4,7 +4,6 @@
         <OutputType>Exe</OutputType>
         <NoWarn>$(NoWarn);NU1702</NoWarn>
         <TargetFramework>net80</TargetFramework>
-        <RootNamespace>Emik.Gerrymandering.Playground</RootNamespace>
         <DisableDefaultDocumentation>true</DisableDefaultDocumentation>
     </PropertyGroup>
     <ItemGroup>
