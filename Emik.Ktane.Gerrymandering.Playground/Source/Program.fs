@@ -1,6 +1,6 @@
-﻿open System.Collections.Generic
+﻿open System
+open System.Collections.Generic
 open Emik.Ktane.Gerrymandering
-open System
 open Emik.Morsels.FSharp
 
 let go _ =
