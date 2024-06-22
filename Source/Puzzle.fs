@@ -59,8 +59,8 @@ type Puzzle =
         let mutable appended = List<_> ()
 
         let winners =
-            [ for _ in 0 .. limit / 2 -> this.Winner ] @
-            [ for _ in (limit + 1) / 2 .. limit -> this.Winner.Opposite ]
+            [ for _ in 0 .. blocs / 2 -> this.Winner ] @
+            [ for _ in (blocs + 3) / 2 .. blocs -> this.Winner.Opposite ]
             |> shuffle rng
             |> List.ofSeq
 
@@ -83,9 +83,9 @@ type Puzzle =
 
             match recursive y x appended with
             | None -> hasTime <- false
-            | Some(false) -> ()
-            | Some(true) -> appended |> List.ofSeq |> answer.Add
-                            appended |> shuffle rng |> Seq.iter push
-                            limit <- limit - 1
+            | Some false -> ()
+            | Some true -> appended |> List.ofSeq |> answer.Add
+                           appended |> shuffle rng |> Seq.iter push
+                           limit <- limit - 1
 
         hasTime
