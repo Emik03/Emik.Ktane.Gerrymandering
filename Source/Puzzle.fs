@@ -34,7 +34,7 @@ type Puzzle =
         let { Answer = answer; Matrix = matrix } = this
 
         let rec recursive absY absX (appended : ICollection<_>) =
-            if (DateTime.Now - start).TotalMilliseconds > timeout then None else
+            if (DateTime.Now - start) > timeout then None else
 
             let isValid (y, x) =
                 appended.Count <> blocLength
@@ -87,3 +87,5 @@ type Puzzle =
             | Some(true) -> appended |> List.ofSeq |> answer.Add
                             appended |> shuffle rng |> Seq.iter push
                             limit <- limit - 1
+
+        hasTime
