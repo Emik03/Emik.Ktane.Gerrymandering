@@ -63,7 +63,7 @@ type Puzzle =
         let boolRng = toBoolRng rng
 
         let push i (y, x) = matrix[y, x] <- winners[limit - 1].OppositeIf <|
-                            (i < (blocs + 2) / 2 && boolRng () || boolRng ())
+                            (i < (blocLength + 2) / 2 && boolRng () || boolRng ())
 
         while hasTime && limit <> 0 do
             let placedHues =
