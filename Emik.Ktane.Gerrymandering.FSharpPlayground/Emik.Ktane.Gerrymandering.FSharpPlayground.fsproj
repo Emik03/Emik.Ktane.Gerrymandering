@@ -1,8 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <NoTests>true</NoTests>
         <OutputType>Exe</OutputType>
-        <NoWarn>$(NoWarn);NU1702</NoWarn>
+        <DisableFody>true</DisableFody>
         <TargetFramework>net9.0</TargetFramework>
         <DisableDefaultDocumentation>true</DisableDefaultDocumentation>
     </PropertyGroup>

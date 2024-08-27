@@ -1,7 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <OutputType>Exe</OutputType>
+        <DisableFody>true</DisableFody>
         <TargetFramework>net9.0</TargetFramework>
+        <DisableDefaultDocumentation>true</DisableDefaultDocumentation>
     </PropertyGroup>
     <ItemGroup>
         <ProjectReference Include="../Emik.Ktane.Gerrymandering.fsproj"/>
