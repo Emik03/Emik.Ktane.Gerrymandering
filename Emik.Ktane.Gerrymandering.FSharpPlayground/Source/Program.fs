@@ -15,6 +15,6 @@ let go _ =
 
 [<EntryPoint>]
 let main _ =
-    let inline fn _ = [ for _ in 1 .. 1000 -> go () ]
+    let inline fn _ = [ for _ in 1 .. 5 -> go () ]
     time fn |> printfn "%A"
     0

@@ -3,7 +3,7 @@
         <NoTests>true</NoTests>
         <OutputType>Exe</OutputType>
         <NoWarn>$(NoWarn);NU1702</NoWarn>
-        <TargetFramework>net80</TargetFramework>
+        <TargetFramework>net9.0</TargetFramework>
         <DisableDefaultDocumentation>true</DisableDefaultDocumentation>
     </PropertyGroup>
     <ItemGroup>

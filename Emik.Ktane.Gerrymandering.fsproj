@@ -1,7 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <NoTests>true</NoTests>
-        <TargetFramework>net35</TargetFramework>
+        <DisableFody>true</DisableFody>
+        <TargetFrameworks>net35;net9.0</TargetFrameworks>
         <DisableDefaultDocumentation>true</DisableDefaultDocumentation>
     </PropertyGroup>
     <ItemGroup>
