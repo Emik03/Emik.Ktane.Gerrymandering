@@ -25,9 +25,10 @@ type Puzzle =
         answer |> Seq.iter (fun x -> windows x |> List.iter demolishBorder)
         cells
 
-    member this.Run rng (blocLength : int) blocs timeout =
+    member this.Run (rng: Random) (blocLength : int) blocs timeout =
         let start = DateTime.Now
         let { Answer = answer; Matrix = matrix } = this
+        let rngFn min max = rng.Next(min, max + 1)
         let mutable appended = List<_> blocLength
 
         let rec recursive absY absX =
@@ -47,7 +48,7 @@ type Puzzle =
                 | Some(true) -> true
 
             ([ 1, 0; -1, 0; 0, 1; 0, -1 ]
-            |> shuffle rng
+            |> shuffle rngFn
             |> Seq.map (fun (relY, relX) -> (absY + relY, absX + relX))
             |> Seq.where isValid
             |> Seq.forall step).some(appended.Count = blocLength)
@@ -55,12 +56,12 @@ type Puzzle =
         let winners =
             [ for _ in 0 .. blocs / 2 -> this.Winner ] @
             [ for _ in (blocs + 3) / 2 .. blocs -> this.Winner.Opposite ]
-            |> shuffle rng
+            |> shuffle rngFn
             |> List.ofSeq
 
         let mutable limit = blocs
         let mutable hasTime = true
-        let boolRng = toBoolRng rng
+        let boolRng = toBoolRng rngFn
 
         let push i (y, x) = matrix[y, x] <- winners[limit - 1].OppositeIf <|
                             (i < (blocLength + 2) / 2 && boolRng () || boolRng ())
@@ -72,9 +73,9 @@ type Puzzle =
                 |> toSeq
                 |> Seq.where (fun (_, _, hue) -> hue <> White)
                 |> Seq.map dropRight
-                |> tryPickRandom rng
+                |> tryPickRandom rngFn
 
-            let y, x = placedHues.getOr (fun _ -> pickIndex2 rng matrix)
+            let y, x = placedHues.getOr (fun _ -> pickIndex2 rngFn matrix)
 
             appended.Clear ()
 
