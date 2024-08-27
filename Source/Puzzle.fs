@@ -28,7 +28,7 @@ type Puzzle =
     member this.Run (rng: Random) (blocLength : int) blocs timeout =
         let start = DateTime.Now
         let { Answer = answer; Matrix = matrix } = this
-        let rngFn min max = rng.Next(min, max + 1)
+        let rngFn min max = rng.Next(min, max)
         let mutable appended = List<_> blocLength
 
         let rec recursive absY absX =
@@ -64,7 +64,7 @@ type Puzzle =
         let boolRng = toBoolRng rngFn
 
         let push i (y, x) = matrix[y, x] <- winners[limit - 1].OppositeIf <|
-                            (i < (blocLength + 2) / 2 && boolRng () || boolRng ())
+                            (i < (blocLength + 2) / 2 && (boolRng () || boolRng ()))
 
         while hasTime && limit <> 0 do
             let placedHues =
