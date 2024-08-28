@@ -54,17 +54,16 @@ type Puzzle =
             |> Seq.forall step).some(appended.Count = blocLength)
 
         let winners =
-            [ for _ in 0 .. blocs / 2 -> this.Winner ] @
-            [ for _ in (blocs + 3) / 2 .. blocs -> this.Winner.Opposite ]
+            [ for _ in 1 .. (blocs + 2) / 2 -> this.Winner ] @
+            [ for _ in 1 .. (blocs - 1) / 2 -> this.Winner.Opposite ]
             |> shuffle rngFn
             |> List.ofSeq
 
         let mutable limit = blocs
         let mutable hasTime = true
-        let boolRng = toBoolRng rngFn
 
         let push i (y, x) = matrix[y, x] <- winners[limit - 1].OppositeIf <|
-                            (i < (blocLength + 2) / 2 && (boolRng () || boolRng ()))
+                                            (i < (blocLength - 1) / 2 && rngFn 1 4 <> 1)
 
         while hasTime && limit <> 0 do
             let placedHues =
@@ -87,3 +86,7 @@ type Puzzle =
                            limit <- limit - 1
 
         hasTime
+
+    static member Warmup () =
+        { Puzzle.Answer = List<_> (); Matrix = Array2D.zeroCreate 6 8; Winner = Blue }
+            .Run (Random 2) 3 12 (TimeSpan.FromSeconds 1) |> ignore
