@@ -11,6 +11,11 @@ type Puzzle =
       Matrix : Hue[,]
       Winner : Hue }
 
+    // Performs 1 warmup round.
+    static do
+        { Puzzle.Answer = List<_> (); Matrix = Array2D.zeroCreate 6 8; Winner = Blue }
+            .Run (Random 2) 3 12 (TimeSpan.FromSeconds 1) |> ignore
+
     member this.Cells =
         let { Answer = answer; Matrix = matrix } = this
         let windows (l : _ list) = [ 0 .. l.Length - 2 ] |> List.map (fun n -> (l[n], l[n + 1]))
@@ -86,7 +91,3 @@ type Puzzle =
                            limit <- limit - 1
 
         hasTime
-
-    static member Warmup () =
-        { Puzzle.Answer = List<_> (); Matrix = Array2D.zeroCreate 6 8; Winner = Blue }
-            .Run (Random 2) 3 12 (TimeSpan.FromSeconds 1) |> ignore

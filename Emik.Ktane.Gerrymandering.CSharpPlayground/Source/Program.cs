@@ -1,16 +1,14 @@
 // SPDX-License-Identifier: MPL-2.0
-Puzzle.Warmup();
+for (var i = 0; i < 100000; i++)
+{
+    Puzzle puzzle = new([], new Hue[9, 13], Hue.Blue);
+    var seed = Random.Shared.Next();
 
-var sw = Stopwatch.StartNew();
-
-for (var i = 0; i < 100; i++)
-    if (new Puzzle([], new Hue[6, 8], Hue.Blue.OppositeIf(i % 2 is 0)) is var puzzle &&
-        !puzzle.Run(
-            Random.Shared,
-            3 + (i / 2 % 2 is 0).ToByte(),
-            12 - (i / 2 % 2 is 0).ToByte() * 4,
-            TimeSpan.FromMilliseconds(50)
-        ))
-        throw new TimeoutException();
-
-Console.WriteLine(sw.Elapsed);
+    if (puzzle.Run(new(seed), 3, 31, TimeSpan.FromMilliseconds(100)) &&
+        puzzle.Answer.Select(x => x.Count(x => puzzle.Matrix[x.Item1, x.Item2].IsBlue) >= 2).Count(x => x) <= 15)
+    {
+        Console.WriteLine(seed);
+        Console.WriteLine(Cell.ShowMatrix(puzzle.Cells));
+        break;
+    }
+}
