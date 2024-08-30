@@ -33,6 +33,8 @@ type Puzzle =
     member this.Run (rng: Random) (blocLength : int) blocs timeout =
         let start = DateTime.Now
         let { Answer = answer; Matrix = matrix } = this
+        answer.Clear ()
+        Array.Clear (matrix, 0, matrix.Length)
         let rngFn min max = rng.Next(min, max)
         let mutable appended = List<_> blocLength
 
